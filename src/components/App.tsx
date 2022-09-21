@@ -1,9 +1,11 @@
+import AppHeader from './AppHeader'
+
 import './App.css'
 
 const App: React.FC = () => {
   return (
     <>
-      <header>Acme Corp.</header>
+      <AppHeader />
       <main>Hello there</main>
     </>
   )

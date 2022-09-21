@@ -1,0 +1,8 @@
+.header {
+  position: sticky;
+  padding: 2rem 3rem;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid var(--ui-0);
+
+  color: var(--main-6);
+}

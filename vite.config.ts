@@ -9,6 +9,10 @@ export default defineConfig({
     port: 3000,
   },
   css: {
+    modules: {
+      localsConvention: 'camelCaseOnly',
+      generateScopedName: '[name]__[local]',
+    },
     postcss: {
       plugins: [autoprefixer(), postcssNested],
     },
