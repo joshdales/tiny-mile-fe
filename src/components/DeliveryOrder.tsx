@@ -1,6 +1,8 @@
 import { DeliveryJob } from '@tiny-mile/delivery-sdk'
 import Address from './Address'
 
+import styles from './DeliveryOrder.module.css'
+
 interface iGivenProps {
   deliveryJob: DeliveryJob
 }
@@ -14,24 +16,13 @@ const DeliveryOrder: React.FC<iProps> = ({ deliveryJob }) => {
 
       <table>
         <tbody>
-          <tr>
-            <th>Stage</th>
-            <td>{deliveryJob.stage.replaceAll('-', ' ')}</td>
-          </tr>
-
-          <tr>
-            <th>Pickup Address</th>
-            <td>
-              <Address address={deliveryJob.pickUpAddress} />
-            </td>
-          </tr>
-
-          <tr>
-            <th>Delivery Address</th>
-            <td>
-              <Address address={deliveryJob.dropOffAddress} />
-            </td>
-          </tr>
+          <TableRow title="Stage">{deliveryJob.stage.replaceAll('-', ' ')}</TableRow>
+          <TableRow title="Pickup Address">
+            <Address address={deliveryJob.pickUpAddress} />
+          </TableRow>
+          <TableRow title="Delivery Address">
+            <Address address={deliveryJob.dropOffAddress} />
+          </TableRow>
         </tbody>
       </table>
     </div>
@@ -39,3 +30,17 @@ const DeliveryOrder: React.FC<iProps> = ({ deliveryJob }) => {
 }
 
 export default DeliveryOrder
+
+interface TableRowProps {
+  title: string
+  children: React.ReactNode
+}
+
+const TableRow: React.FC<TableRowProps> = ({ title, children }) => {
+  return (
+    <tr className={styles.row}>
+      <th className={styles.headerCell}>{title}</th>
+      <td className={styles.cell}>{children}</td>
+    </tr>
+  )
+}
