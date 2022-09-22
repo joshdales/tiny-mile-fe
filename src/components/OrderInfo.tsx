@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ApiError, DeliveryJob } from '@tiny-mile/delivery-sdk'
 import tinyMileClient from '../util/rest'
 
@@ -30,11 +30,31 @@ const OrderInfo: React.FC = () => {
       })
   }, [])
 
+  const title = useMemo(() => {
+    switch (deliveryOrder?.stage) {
+      case DeliveryJob.stage.COURIER_ASSIGNMENT:
+        return 'Ready 🥳'
+      case DeliveryJob.stage.DELIVERY_CANCELED:
+        return 'Cancelled 😔'
+      case DeliveryJob.stage.DELIVERY_COMPLETED:
+        return 'Completed 🤩'
+      case DeliveryJob.stage.PICK_UP:
+        return 'Pick up 🚀'
+      case DeliveryJob.stage.DROP_OFF:
+        return 'Drop Off 📦'
+      default:
+        return 'Checking 🤔'
+    }
+  }, [deliveryOrder])
+
   return (
     <section className={styles.container}>
-      <h1 className={styles.title}>Delivery!</h1>
-      {error && <p>An error occurred: {error.message}</p>}
-      {isLoading && <p>Fetching delivery info!</p>}
+      <div>
+        <h1 className={styles.title}>{title}</h1>
+        {error && <p>An error occurred: {error.message}</p>}
+        {isLoading && <p>Fetching delivery info!</p>}
+      </div>
+
       {deliveryOrder && (
         <ErrorBoundary>
           <DeliveryOrder deliveryJob={deliveryOrder} />
