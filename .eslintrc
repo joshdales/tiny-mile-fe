@@ -16,7 +16,8 @@
   "rules": {
     "id-length": ["warn", {"min": 3, "exceptions": ["id"]}],
     // React Rules
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
   },
   "settings": {
     "react": { "version": "detect" }
