@@ -2,13 +2,16 @@ import AppHeader from './AppHeader'
 import OrderInfo from './OrderInfo'
 
 import './App.css'
+import ErrorBoundary from './ErrorBoundary'
 
 const App: React.FC = () => {
   return (
     <>
       <AppHeader />
       <main>
-        <OrderInfo />
+        <ErrorBoundary>
+          <OrderInfo />
+        </ErrorBoundary>
       </main>
     </>
   )
