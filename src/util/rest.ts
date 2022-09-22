@@ -8,4 +8,4 @@ const tinyMileConfig: Partial<OpenAPIConfig> = {
 }
 
 const tinyMileClient = new Client(tinyMileConfig)
-export default tinyMileClient
+export default tinyMileClient.default
