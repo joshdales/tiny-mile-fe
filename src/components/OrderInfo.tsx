@@ -11,7 +11,7 @@ import ErrorBoundary from './ErrorBoundary'
 const DELIVERY_UUID = '11197c34-fdcc-5b85-16a6-414014d7ebf5'
 
 const OrderInfo: React.FC = () => {
-  const [deliveryOrder, setDeliverOrder] = useState<DeliveryJob>()
+  const [deliveryJob, setDeliverJob] = useState<DeliveryJob>()
   const [error, setError] = useState<ApiError>()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -20,7 +20,7 @@ const OrderInfo: React.FC = () => {
     tinyMileClient
       .getDeliveryJob(DELIVERY_UUID)
       .then((res) => {
-        setDeliverOrder(res)
+        setDeliverJob(res)
       })
       .catch((err) => {
         setError(err)
@@ -31,7 +31,7 @@ const OrderInfo: React.FC = () => {
   }, [])
 
   const title = useMemo(() => {
-    switch (deliveryOrder?.stage) {
+    switch (deliveryJob?.stage) {
       case DeliveryJob.stage.COURIER_ASSIGNMENT:
         return 'Ready 🥳'
       case DeliveryJob.stage.DELIVERY_CANCELED:
@@ -45,7 +45,7 @@ const OrderInfo: React.FC = () => {
       default:
         return 'Checking 🤔'
     }
-  }, [deliveryOrder])
+  }, [deliveryJob])
 
   return (
     <section className={styles.container}>
@@ -55,9 +55,9 @@ const OrderInfo: React.FC = () => {
         {isLoading && <p>Fetching delivery info!</p>}
       </div>
 
-      {deliveryOrder && (
+      {deliveryJob && (
         <ErrorBoundary>
-          <DeliveryOrder deliveryJob={deliveryOrder} />
+          <DeliveryOrder deliveryJob={deliveryJob} />
         </ErrorBoundary>
       )}
     </section>
