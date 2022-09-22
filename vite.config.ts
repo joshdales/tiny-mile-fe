@@ -8,6 +8,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  envPrefix: 'API_',
   css: {
     modules: {
       localsConvention: 'camelCaseOnly',

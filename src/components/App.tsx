@@ -1,4 +1,5 @@
 import AppHeader from './AppHeader'
+import OrderInfo from './OrderInfo'
 
 import './App.css'
 
@@ -6,7 +7,9 @@ const App: React.FC = () => {
   return (
     <>
       <AppHeader />
-      <main>Hello there</main>
+      <main>
+        <OrderInfo />
+      </main>
     </>
   )
 }
