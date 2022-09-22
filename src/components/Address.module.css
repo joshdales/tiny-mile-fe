@@ -1,0 +1,8 @@
+.address {
+  text-transform: capitalize;
+  font-style: normal;
+
+  &-line {
+    display: block;
+  }
+}
