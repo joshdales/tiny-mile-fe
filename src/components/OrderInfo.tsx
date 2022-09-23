@@ -9,7 +9,6 @@ import ErrorBoundary from './ErrorBoundary'
 import ErrorMessage from './ErrorMessage'
 import CourierControls from './CourierControls'
 
-// Ideally I would be able to fetch the uuids of delivery jobs, but I'm just hardcoding this for my mock-server
 const DELIVERY_UUID = '11197c34-fdcc-5b85-16a6-414014d7ebf5'
 
 const OrderInfo: React.FC = () => {

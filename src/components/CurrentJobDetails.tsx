@@ -11,14 +11,14 @@ interface iGivenProps {
 type iProps = iGivenProps
 
 const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
-  const [idCopied, setIdCopied] = useState(false)
+  const [idCopied, setIdCopied] = useState<string>()
   const formattedId = useMemo(() => deliveryJob.uuid.replace(/^urn:uuid:/, ''), [deliveryJob.uuid])
 
   useEffect(() => {
     let timer: NodeJS.Timeout
     if (idCopied) {
       timer = setTimeout(() => {
-        setIdCopied(false)
+        setIdCopied(undefined)
       }, 1000)
     }
 
@@ -30,9 +30,14 @@ const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
   }, [idCopied])
 
   const copyId = useCallback(() => {
-    navigator.clipboard.writeText(formattedId).then(() => {
-      setIdCopied(true)
-    })
+    navigator.clipboard
+      .writeText(formattedId)
+      .then(() => {
+        setIdCopied('✔️')
+      })
+      .catch(() => {
+        setIdCopied('❌')
+      })
   }, [formattedId])
 
   return (
@@ -43,9 +48,7 @@ const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
         <tbody>
           <TableRow title="ID">
             {formattedId.split('-')[0]}
-            <button className={styles.copyButton} onClick={copyId}>
-              Copy ID {idCopied && '✔️'}
-            </button>
+            <button onClick={copyId}>Copy ID {idCopied}</button>
           </TableRow>
 
           <TableRow title="Pick-Up estimate">
