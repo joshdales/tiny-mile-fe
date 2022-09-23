@@ -33,7 +33,7 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError, setNotific
 
   const handleDropOff = useCallback(() => {
     tinyMileClient
-      .postOrderPickedUp(formattedId)
+      .postOrderPickedUp(formattedId, {})
       .then(() => {
         setNotificationMessage('')
         setLidIsOpen(false)
