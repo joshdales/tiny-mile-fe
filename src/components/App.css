@@ -23,6 +23,27 @@ main {
   align-items: center;
 }
 
+button {
+  cursor: pointer;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--ui-6);
+  color: var(--ui-0);
+  border-radius: 2px;
+  background-color: #fff;
+
+  &:hover {
+    background-color: var(--ui-7);
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 1px 1px var(--blue-7);
+  }
+
+  &:active {
+    background-color: var(--ui-7);
+  }
+}
+
 :root {
   --ui-0: #0d141f;
   --ui-1: #1a283d;

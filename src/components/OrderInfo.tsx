@@ -6,6 +6,7 @@ import DeliveryOrder from './DeliveryOrder'
 
 import styles from './OrderInfo.module.css'
 import ErrorBoundary from './ErrorBoundary'
+import CourierControls from './CourierControls'
 
 // Ideally I would be able to fetch the uuids of delivery jobs
 const DELIVERY_UUID = '11197c34-fdcc-5b85-16a6-414014d7ebf5'
@@ -53,6 +54,9 @@ const OrderInfo: React.FC = () => {
         <h1 className={styles.title}>{title}</h1>
         {error && <p>An error occurred: {error.message}</p>}
         {isLoading && <p>Fetching delivery info!</p>}
+        {deliveryJob && (
+          <CourierControls deliveryJobId={deliveryJob.uuid} deliveryJobStage={deliveryJob.stage} />
+        )}
       </div>
 
       {deliveryJob && (

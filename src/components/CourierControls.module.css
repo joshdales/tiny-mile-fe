@@ -1,0 +1,14 @@
+.loading {
+  margin-left: 0.25rem;
+  animation: spinner infinite linear 0.25s;
+
+  @keyframes spinner {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
