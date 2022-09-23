@@ -46,6 +46,7 @@ button {
   &:disabled {
     cursor: not-allowed;
     background-color: var(--ui-7);
+    color: var(--ui-6);
   }
 }
 
