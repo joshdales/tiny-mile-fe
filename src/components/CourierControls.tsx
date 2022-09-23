@@ -27,7 +27,7 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, deliveryJobStage, se
     } else if (deliveryJobStage === DeliveryJob.stage.PICK_UP) {
       request = tinyMileClient.postOrderPickedUp(requestId)
     } else {
-      // notify that this order is done
+      // This order is en route
       return
     }
 

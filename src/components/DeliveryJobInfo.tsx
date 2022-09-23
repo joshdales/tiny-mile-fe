@@ -52,7 +52,7 @@ const DeliveryJobInfo: React.FC = () => {
     <section className={styles.container}>
       <div className={styles.controls}>
         <h2 className={styles.title}>{title}</h2>
-        {isLoading && <p>Fetching delivery info!</p>}
+        {isLoading && <p>Fetching delivery job details!</p>}
         {deliveryJob && (
           <ErrorBoundary>
             <CourierControls
