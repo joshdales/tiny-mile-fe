@@ -9,8 +9,6 @@ import ErrorBoundary from './ErrorBoundary'
 import ErrorMessage from './ErrorMessage'
 import CourierControls from './CourierControls'
 
-const DELIVERY_UUID = '11197c34-fdcc-5b85-16a6-414014d7ebf5'
-
 const DeliveryJobInfo: React.FC = () => {
   const [deliveryJob, setDeliverJob] = useState<DeliveryJob>()
   const [error, setError] = useState<ApiError>()
@@ -18,8 +16,14 @@ const DeliveryJobInfo: React.FC = () => {
 
   useEffect(() => {
     setIsLoading(true)
+    const deliveryJobId = new URLSearchParams(location.search).get('delivery_job_id')
+
+    if (!deliveryJobId) {
+      throw new Error('There is no Delivery Job ID to fetch')
+    }
+
     tinyMileClient
-      .getDeliveryJob(DELIVERY_UUID)
+      .getDeliveryJob(deliveryJobId)
       .then((res) => {
         setDeliverJob(res)
       })
@@ -32,6 +36,10 @@ const DeliveryJobInfo: React.FC = () => {
   }, [])
 
   const title = useMemo(() => {
+    if (!deliveryJob && error) {
+      return 'Looks like there was an issue 😱'
+    }
+
     switch (deliveryJob?.stage) {
       case DeliveryJob.stage.COURIER_ASSIGNMENT:
         return 'Assignment 🧐'
@@ -46,7 +54,7 @@ const DeliveryJobInfo: React.FC = () => {
       default:
         return 'Checking 🤔'
     }
-  }, [deliveryJob?.stage])
+  }, [deliveryJob, error])
 
   return (
     <section className={styles.container}>
