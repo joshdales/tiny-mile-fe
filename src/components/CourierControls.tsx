@@ -46,11 +46,19 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError, setNotific
 
   return (
     <>
-      <button disabled={lidIsOpen || requestIsInFlight} onClick={handlePickup}>
+      <button
+        className={styles.button}
+        disabled={lidIsOpen || requestIsInFlight}
+        onClick={handlePickup}
+      >
         Open robot lid 🚪
       </button>
 
-      <button disabled={!lidIsOpen || requestIsInFlight} onClick={handleDropOff}>
+      <button
+        className={styles.button}
+        disabled={!lidIsOpen || requestIsInFlight}
+        onClick={handleDropOff}
+      >
         Order picked up 🎁
       </button>
 
