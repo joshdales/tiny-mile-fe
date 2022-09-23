@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { DeliveryJob } from '@tiny-mile/delivery-sdk'
+import { DeliveryJob, ApiError } from '@tiny-mile/delivery-sdk'
 import tinyMileClient from '../util/rest'
 
 import styles from './CourierControls.module.css'
@@ -7,11 +7,12 @@ import styles from './CourierControls.module.css'
 interface iGivenProps {
   deliveryJobId: string
   deliveryJobStage: DeliveryJob.stage
+  setError: (error: ApiError) => void
 }
 
 type iProps = iGivenProps
 
-const CourierControls: React.FC<iProps> = ({ deliveryJobId, deliveryJobStage }) => {
+const CourierControls: React.FC<iProps> = ({ deliveryJobId, deliveryJobStage, setError }) => {
   const [lidIsOpen, setLidIsOpen] = useState(false)
   const [requestIsInFlight, setRequestIsInFlight] = useState(false)
 
@@ -34,13 +35,13 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, deliveryJobStage }) 
       .then(() => {
         setLidIsOpen((currentState) => !currentState)
       })
-      .catch((err) => {
-        // Do some error handling
+      .catch((err: ApiError) => {
+        setError(err)
       })
       .finally(() => {
         setRequestIsInFlight(false)
       })
-  }, [deliveryJobId, deliveryJobStage])
+  }, [deliveryJobId, deliveryJobStage, setError])
 
   return (
     <button disabled={requestIsInFlight} onClick={handleRobotLid}>

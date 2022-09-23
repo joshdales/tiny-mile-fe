@@ -12,7 +12,7 @@ type iProps = iGivenProps
 const DeliveryOrder: React.FC<iProps> = ({ deliveryJob }) => {
   return (
     <div>
-      <h2>{deliveryJob.uuid.replace(/^urn:uuid:/, '').split('-')[0]}</h2>
+      <h2>Job ID: {deliveryJob.uuid.replace(/^urn:uuid:/, '').split('-')[0]}</h2>
 
       <table>
         <tbody>

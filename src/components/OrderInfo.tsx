@@ -46,7 +46,7 @@ const OrderInfo: React.FC = () => {
       default:
         return 'Checking 🤔'
     }
-  }, [deliveryJob])
+  }, [deliveryJob?.stage])
 
   return (
     <section className={styles.container}>
@@ -55,7 +55,11 @@ const OrderInfo: React.FC = () => {
         {error && <p>An error occurred: {error.message}</p>}
         {isLoading && <p>Fetching delivery info!</p>}
         {deliveryJob && (
-          <CourierControls deliveryJobId={deliveryJob.uuid} deliveryJobStage={deliveryJob.stage} />
+          <CourierControls
+            deliveryJobId={deliveryJob.uuid}
+            deliveryJobStage={deliveryJob.stage}
+            setError={setError}
+          />
         )}
       </div>
 
