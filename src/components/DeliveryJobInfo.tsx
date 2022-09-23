@@ -4,14 +4,14 @@ import tinyMileClient from '../util/rest'
 
 import CurrentJobDetails from './CurrentJobDetails'
 
-import styles from './OrderInfo.module.css'
+import styles from './DeliveryJobInfo.module.css'
 import ErrorBoundary from './ErrorBoundary'
 import ErrorMessage from './ErrorMessage'
 import CourierControls from './CourierControls'
 
 const DELIVERY_UUID = '11197c34-fdcc-5b85-16a6-414014d7ebf5'
 
-const OrderInfo: React.FC = () => {
+const DeliveryJobInfo: React.FC = () => {
   const [deliveryJob, setDeliverJob] = useState<DeliveryJob>()
   const [error, setError] = useState<ApiError>()
   const [isLoading, setIsLoading] = useState(false)
@@ -74,4 +74,4 @@ const OrderInfo: React.FC = () => {
   )
 }
 
-export default OrderInfo
+export default DeliveryJobInfo

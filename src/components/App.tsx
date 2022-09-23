@@ -1,5 +1,5 @@
 import AppHeader from './AppHeader'
-import OrderInfo from './OrderInfo'
+import DeliveryJobInfo from './DeliveryJobInfo'
 
 import './App.css'
 import ErrorBoundary from './ErrorBoundary'
@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
       <main>
         <ErrorBoundary>
-          <OrderInfo />
+          <DeliveryJobInfo />
         </ErrorBoundary>
       </main>
     </>
