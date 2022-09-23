@@ -1,3 +1,15 @@
 .button {
   width: 60%;
 }
+
+.success,
+.loading {
+  border: 1px solid var(--ui-7);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  margin-top: auto;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

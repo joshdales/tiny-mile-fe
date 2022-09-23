@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ApiError } from '@tiny-mile/delivery-sdk'
 import tinyMileClient from '../util/rest'
 
@@ -7,42 +7,54 @@ import styles from './CourierControls.module.css'
 interface iGivenProps {
   deliveryJobId: string
   setError: (error: ApiError) => void
-  setNotificationMessage: (message: string) => void
 }
 
 type iProps = iGivenProps
 
-const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError, setNotificationMessage }) => {
+const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError }) => {
   const [lidIsOpen, setLidIsOpen] = useState(false)
   const [requestIsInFlight, setRequestIsInFlight] = useState(false)
+  const [successMessage, setSuccessMessage] = useState<string>()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSuccessMessage(undefined)
+    }, 5000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
 
   const formattedId = useMemo(() => deliveryJobId.replace(/^urn:uuid:/, ''), [deliveryJobId])
 
   const handlePickup = useCallback(() => {
+    setRequestIsInFlight(true)
     tinyMileClient
       .createOpenRobotLidCommand(formattedId)
       .then(() => {
-        setNotificationMessage('Success')
+        setSuccessMessage('Ready for pick up!')
         setLidIsOpen(true)
       })
       .catch(setError)
       .finally(() => {
         setRequestIsInFlight(false)
       })
-  }, [formattedId, setError, setNotificationMessage])
+  }, [formattedId, setError])
 
   const handleDropOff = useCallback(() => {
+    setRequestIsInFlight(true)
     tinyMileClient
       .postOrderPickedUp(formattedId, {})
       .then(() => {
-        setNotificationMessage('')
+        setSuccessMessage('Order picked up!')
         setLidIsOpen(false)
       })
       .catch(setError)
       .finally(() => {
         setRequestIsInFlight(false)
       })
-  }, [formattedId, setError, setNotificationMessage])
+  }, [formattedId, setError])
 
   return (
     <>
@@ -59,10 +71,12 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError, setNotific
         disabled={!lidIsOpen || requestIsInFlight}
         onClick={handleDropOff}
       >
-        Order picked up 🎁
+        Order packed 🎁
       </button>
 
-      {requestIsInFlight && <code>Contacting Robot... 🤖</code>}
+      {requestIsInFlight && <code className={styles.loading}>Contacting Robot... 🤖</code>}
+
+      {successMessage && <p className={styles.success}>✅ {successMessage}</p>}
     </>
   )
 }

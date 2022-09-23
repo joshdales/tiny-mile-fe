@@ -15,17 +15,6 @@ const DeliveryJobInfo: React.FC = () => {
   const [deliveryJob, setDeliverJob] = useState<DeliveryJob>()
   const [error, setError] = useState<ApiError>()
   const [isLoading, setIsLoading] = useState(false)
-  const [successNotification, setSuccessNotification] = useState<string>()
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setSuccessNotification(undefined)
-    }, 3000)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [setSuccessNotification])
 
   useEffect(() => {
     setIsLoading(true)
@@ -66,18 +55,11 @@ const DeliveryJobInfo: React.FC = () => {
         {isLoading && <p>Fetching delivery job details!</p>}
         {deliveryJob && (
           <ErrorBoundary>
-            <CourierControls
-              deliveryJobId={deliveryJob.uuid}
-              setNotificationMessage={setSuccessNotification}
-              setError={setError}
-            />
+            <CourierControls deliveryJobId={deliveryJob.uuid} setError={setError} />
           </ErrorBoundary>
         )}
 
         {error && <ErrorMessage errorMessage={error.message} />}
-        {successNotification && (
-          <p className={styles.successNotification}>✅ {successNotification}</p>
-        )}
       </div>
 
       {deliveryJob && (
