@@ -13,3 +13,8 @@
   vertical-align: baseline;
   padding-right: 0.75rem;
 }
+
+.title,
+.header-cell {
+  text-transform: capitalize;
+}

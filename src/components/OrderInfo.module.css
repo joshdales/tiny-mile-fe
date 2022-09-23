@@ -6,9 +6,17 @@
   color: var(--ui-0);
   display: grid;
   grid-template-columns: 1fr auto;
+  gap: 2rem;
 }
 
 .title {
   color: var(--ui-1);
+}
 
+.controls {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
