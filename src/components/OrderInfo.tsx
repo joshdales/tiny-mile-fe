@@ -2,14 +2,14 @@ import { useEffect, useMemo, useState } from 'react'
 import { ApiError, DeliveryJob } from '@tiny-mile/delivery-sdk'
 import tinyMileClient from '../util/rest'
 
-import DeliveryOrder from './DeliveryOrder'
+import CurrentJobDetails from './CurrentJobDetails'
 
 import styles from './OrderInfo.module.css'
 import ErrorBoundary from './ErrorBoundary'
 import ErrorMessage from './ErrorMessage'
 import CourierControls from './CourierControls'
 
-// Ideally I would be able to fetch the uuids of delivery jobs
+// Ideally I would be able to fetch the uuids of delivery jobs, but I'm just hardcoding this for my mock-server
 const DELIVERY_UUID = '11197c34-fdcc-5b85-16a6-414014d7ebf5'
 
 const OrderInfo: React.FC = () => {
@@ -68,7 +68,7 @@ const OrderInfo: React.FC = () => {
 
       {deliveryJob && (
         <ErrorBoundary>
-          <DeliveryOrder deliveryJob={deliveryJob} />
+          <CurrentJobDetails deliveryJob={deliveryJob} />
         </ErrorBoundary>
       )}
     </section>

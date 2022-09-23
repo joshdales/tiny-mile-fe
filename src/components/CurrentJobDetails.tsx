@@ -1,7 +1,7 @@
 import { DeliveryJob } from '@tiny-mile/delivery-sdk'
 import Address from './Address'
 
-import styles from './DeliveryOrder.module.css'
+import styles from './CurrentJobDetails.module.css'
 
 interface iGivenProps {
   deliveryJob: DeliveryJob
@@ -9,7 +9,7 @@ interface iGivenProps {
 
 type iProps = iGivenProps
 
-const DeliveryOrder: React.FC<iProps> = ({ deliveryJob }) => {
+const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
   return (
     <div>
       <h1 className={styles.title}>Current job details</h1>
@@ -45,7 +45,7 @@ const DeliveryOrder: React.FC<iProps> = ({ deliveryJob }) => {
   )
 }
 
-export default DeliveryOrder
+export default CurrentJobDetails
 
 interface TableRowProps {
   title: string

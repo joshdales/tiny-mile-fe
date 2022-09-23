@@ -8,6 +8,7 @@ const App: React.FC = () => {
   return (
     <>
       <AppHeader />
+
       <main>
         <ErrorBoundary>
           <OrderInfo />
