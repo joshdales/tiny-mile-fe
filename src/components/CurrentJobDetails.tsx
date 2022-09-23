@@ -1,4 +1,5 @@
 import { DeliveryJob } from '@tiny-mile/delivery-sdk'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Address from './Address'
 
 import styles from './CurrentJobDetails.module.css'
@@ -10,13 +11,42 @@ interface iGivenProps {
 type iProps = iGivenProps
 
 const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
+  const [idCopied, setIdCopied] = useState(false)
+  const formattedId = useMemo(() => deliveryJob.uuid.replace(/^urn:uuid:/, ''), [deliveryJob.uuid])
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+    if (idCopied) {
+      timer = setTimeout(() => {
+        setIdCopied(false)
+      }, 1000)
+    }
+
+    return () => {
+      if (timer) {
+        clearTimeout(timer)
+      }
+    }
+  }, [idCopied])
+
+  const copyId = useCallback(() => {
+    navigator.clipboard.writeText(formattedId).then(() => {
+      setIdCopied(true)
+    })
+  }, [formattedId])
+
   return (
     <div>
       <h1 className={styles.title}>Current job details</h1>
 
       <table>
         <tbody>
-          <TableRow title="ID">{deliveryJob.uuid.replace(/^urn:uuid:/, '').split('-')[0]}</TableRow>
+          <TableRow title="ID">
+            {formattedId.split('-')[0]}
+            <button className={styles.copyButton} onClick={copyId}>
+              Copy ID {idCopied && '✔️'}
+            </button>
+          </TableRow>
 
           <TableRow title="Pick-Up estimate">
             {new Date(deliveryJob.pickUpEstimatedAt).toLocaleString()}

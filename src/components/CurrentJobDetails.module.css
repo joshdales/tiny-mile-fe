@@ -8,6 +8,12 @@
   padding-top: 0.75rem;
 }
 
+.cell {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
 .header-cell {
   text-align: left;
   vertical-align: baseline;
@@ -17,4 +23,8 @@
 .title,
 .header-cell {
   text-transform: capitalize;
+}
+
+.copy-button {
+  margin-left: auto;
 }
