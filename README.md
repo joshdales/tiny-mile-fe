@@ -14,4 +14,5 @@ API_AUTH_TOKEN="your_api_key"
 
 Start the dev server `npm run dev`.
 
-Go to `localhost:3000`
+Go to `localhost:3000?delivery_job_id=36599ca3-03e3-2a86-e3b3-37ad440edcc9` to see your order details,
+or replace the search param with any other id to fetch that record.
