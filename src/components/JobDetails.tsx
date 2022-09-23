@@ -47,7 +47,7 @@ const JobDetails: React.FC<iProps> = ({ deliveryJob }) => {
       <table>
         <tbody>
           <TableRow title="ID">
-            {formattedId.split('-')[0]}… <button onClick={copyId}>Copy ID {idCopied}</button>
+            {formattedId.split('-')[0]} <button onClick={copyId}>Copy ID {idCopied}</button>
           </TableRow>
 
           <TableRow title="Pick-Up estimate">

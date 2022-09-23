@@ -17,14 +17,24 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError }) => {
   const [successMessage, setSuccessMessage] = useState<string>()
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSuccessMessage(undefined)
-    }, 5000)
+    let timer: NodeJS.Timeout
+    if (successMessage) {
+      timer = setTimeout(() => {
+        setSuccessMessage(undefined)
+      }, 5000)
+
+      if (requestIsInFlight) {
+        setSuccessMessage(undefined)
+        clearTimeout(timer)
+      }
+    }
 
     return () => {
-      clearTimeout(timer)
+      if (timer) {
+        clearTimeout(timer)
+      }
     }
-  }, [])
+  }, [requestIsInFlight, successMessage])
 
   const formattedId = useMemo(() => deliveryJobId.replace(/^urn:uuid:/, ''), [deliveryJobId])
 
