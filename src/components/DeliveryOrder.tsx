@@ -17,11 +17,22 @@ const DeliveryOrder: React.FC<iProps> = ({ deliveryJob }) => {
       <table>
         <tbody>
           <TableRow title="Stage">{deliveryJob.stage.replaceAll('-', ' ')}</TableRow>
-          <TableRow title="Pickup Address">
+          <TableRow title="Pick-Up estimate">
+            {new Date(deliveryJob.pickUpEstimatedAt).toLocaleString()}
+          </TableRow>
+          <TableRow title="Pickup address">
             <Address address={deliveryJob.pickUpAddress} />
           </TableRow>
-          <TableRow title="Delivery Address">
+          <TableRow title="Delivery estimate">
+            {new Date(deliveryJob.dropOffEstimatedAt).toLocaleString()}
+          </TableRow>
+          <TableRow title="Delivery address">
             <Address address={deliveryJob.dropOffAddress} />
+          </TableRow>
+          <TableRow title="Cost">
+            {new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(
+              deliveryJob.deliveryCharges.totalInCents / 100
+            )}
           </TableRow>
         </tbody>
       </table>
