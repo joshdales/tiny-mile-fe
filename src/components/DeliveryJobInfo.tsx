@@ -34,7 +34,7 @@ const DeliveryJobInfo: React.FC = () => {
   const title = useMemo(() => {
     switch (deliveryJob?.stage) {
       case DeliveryJob.stage.COURIER_ASSIGNMENT:
-        return 'Ready 🥳'
+        return 'Assignment 🧐'
       case DeliveryJob.stage.DELIVERY_CANCELED:
         return 'Cancelled 😔'
       case DeliveryJob.stage.DELIVERY_COMPLETED:
