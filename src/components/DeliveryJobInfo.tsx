@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { ApiError, DeliveryJob } from '@tiny-mile/delivery-sdk'
 import tinyMileClient from '../util/rest'
 
-import CurrentJobDetails from './CurrentJobDetails'
+import JobDetails from './JobDetails'
 
 import styles from './DeliveryJobInfo.module.css'
 import ErrorBoundary from './ErrorBoundary'
@@ -67,7 +67,7 @@ const DeliveryJobInfo: React.FC = () => {
 
       {deliveryJob && (
         <ErrorBoundary>
-          <CurrentJobDetails deliveryJob={deliveryJob} />
+          <JobDetails deliveryJob={deliveryJob} />
         </ErrorBoundary>
       )}
     </section>

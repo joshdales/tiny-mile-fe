@@ -2,7 +2,7 @@ import { DeliveryJob } from '@tiny-mile/delivery-sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Address from './Address'
 
-import styles from './CurrentJobDetails.module.css'
+import styles from './JobDetails.module.css'
 
 interface iGivenProps {
   deliveryJob: DeliveryJob
@@ -10,7 +10,7 @@ interface iGivenProps {
 
 type iProps = iGivenProps
 
-const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
+const JobDetails: React.FC<iProps> = ({ deliveryJob }) => {
   const [idCopied, setIdCopied] = useState<string>()
   const formattedId = useMemo(() => deliveryJob.uuid.replace(/^urn:uuid:/, ''), [deliveryJob.uuid])
 
@@ -42,13 +42,12 @@ const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
 
   return (
     <div>
-      <h1 className={styles.title}>Current job details</h1>
+      <h1 className={styles.title}>Job details</h1>
 
       <table>
         <tbody>
           <TableRow title="ID">
-            {formattedId.split('-')[0]}
-            <button onClick={copyId}>Copy ID {idCopied}</button>
+            {formattedId.split('-')[0]}… <button onClick={copyId}>Copy ID {idCopied}</button>
           </TableRow>
 
           <TableRow title="Pick-Up estimate">
@@ -78,7 +77,7 @@ const CurrentJobDetails: React.FC<iProps> = ({ deliveryJob }) => {
   )
 }
 
-export default CurrentJobDetails
+export default JobDetails
 
 interface TableRowProps {
   title: string
