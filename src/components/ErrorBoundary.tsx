@@ -17,6 +17,10 @@ export default class ErrorBoundary extends React.PureComponent<any, iState> {
     return { error: true, errorMessage: err.message }
   }
 
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    console.log('Error was caught, we should log this:', error, errorInfo)
+  }
+
   render(): JSX.Element {
     if (this.state.error) {
       return (

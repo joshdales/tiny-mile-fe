@@ -26,21 +26,21 @@ main {
 button {
   cursor: pointer;
   padding: 0.5rem 1.25rem;
-  border: 1px solid var(--ui-6);
+  border: 1px solid var(--ui-7);
   color: var(--ui-0);
   border-radius: 2px;
   background-color: #fff;
 
   &:hover {
-    background-color: var(--ui-7);
+    border-color: var(--ui-6);
   }
 
   &:focus {
-    box-shadow: 0px 0px 1px 1px var(--blue-7);
+    outline: medium solid var(--green-7);
   }
 
   &:active {
-    box-shadow: inset 0px 0px 1px 1px var(--blue-7);
+    box-shadow: inset 0px 0px 1px 1px var(--ui-7);
   }
 
   &:disabled {
