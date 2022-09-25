@@ -1,10 +1,22 @@
 import { formatMockedResponseUuid } from '../../src/util'
 import deliveryJob from '../fixtures/deliveryJob.json'
+import apiError from '../fixtures/apiError.json'
 
 describe('Delivery Job', () => {
   const deliveryJobId = formatMockedResponseUuid(deliveryJob.uuid)
 
   beforeEach(() => {
+    cy.intercept(`**/delivery-jobs/${deliveryJobId}`, { statusCode: 200, body: deliveryJob })
+    cy.intercept(`**/delivery-jobs/${deliveryJobId}/couriers/current/open-lid`, {
+      statusCode: 202,
+      body: '',
+      delay: 50,
+    })
+    cy.intercept(`**/delivery-jobs/${deliveryJobId}/events/order-picked-up`, {
+      statusCode: 202,
+      body: '',
+      delay: 50,
+    })
     cy.visit(`http://localhost:3000?delivery_job_id=${deliveryJobId}`)
   })
 
@@ -38,13 +50,14 @@ describe('Delivery Job', () => {
       .click()
       .get('code')
       .contains('Contacting Robot... 🤖')
-      .get('.ErrorMessage-module__message')
-      .contains('Event was rejected')
+      .get('.CourierControls-module__success')
+      .contains('✅ Order picked up!')
   })
 
   context('when there is no matching delivery_job_id that matches search param', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000?delivery_job_id=not-valid')
+      cy.intercept(`**/delivery-jobs/${deliveryJobId}`, { statusCode: 404, body: apiError })
+      cy.visit(`http://localhost:3000?delivery_job_id=${deliveryJobId}`)
     })
 
     it('displays the rest error', () => {
