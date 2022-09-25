@@ -1,7 +1,9 @@
 import { DeliveryJob } from '@tiny-mile/delivery-sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import Address from './Address'
 
+import { formatMockedResponseUuid } from '../util'
+
+import Address from './Address'
 import TableRow from './TableRow'
 
 import styles from './JobDetails.module.css'
@@ -14,7 +16,7 @@ type iProps = iGivenProps
 
 const JobDetails: React.FC<iProps> = ({ deliveryJob }) => {
   const [idCopied, setIdCopied] = useState<string>()
-  const formattedId = useMemo(() => deliveryJob.uuid.replace(/^urn:uuid:/, ''), [deliveryJob.uuid])
+  const formattedId = useMemo(() => formatMockedResponseUuid(deliveryJob.uuid), [deliveryJob.uuid])
 
   useEffect(() => {
     let timer: NodeJS.Timeout

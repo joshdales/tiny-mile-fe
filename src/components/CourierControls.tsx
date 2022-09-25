@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ApiError } from '@tiny-mile/delivery-sdk'
+
 import tinyMileClient from '../util/rest'
+import { formatMockedResponseUuid } from '../util'
 
 import styles from './CourierControls.module.css'
 
@@ -36,7 +38,7 @@ const CourierControls: React.FC<iProps> = ({ deliveryJobId, setError }) => {
     }
   }, [requestIsInFlight, successMessage])
 
-  const formattedId = useMemo(() => deliveryJobId.replace(/^urn:uuid:/, ''), [deliveryJobId])
+  const formattedId = useMemo(() => formatMockedResponseUuid(deliveryJobId), [deliveryJobId])
 
   const handlePickup = useCallback(() => {
     setRequestIsInFlight(true)

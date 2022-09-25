@@ -1,6 +1,11 @@
+import { formatMockedResponseUuid } from '../../../src/util'
+import deliveryJob from '../../fixtures/deliveryJob.json'
+
 describe('Delivery Job', () => {
+  const deliveryJobId = formatMockedResponseUuid(deliveryJob.uuid)
+
   beforeEach(() => {
-    cy.visit('http://localhost:3000?delivery_job_id=36599ca3-03e3-2a86-e3b3-37ad440edcc9')
+    cy.visit(`http://localhost:3000?delivery_job_id=${deliveryJobId}`)
   })
 
   it('fetches the delivery job', () => {
@@ -9,6 +14,8 @@ describe('Delivery Job', () => {
 
   it('displays the delivery job once fetched', () => {
     cy.get('h2').should('contain', 'Assignment 🧐')
+    cy.get('h1').should('have.text', 'Job details')
+    cy.get('td').first().should('contain', deliveryJobId.split('-')[0])
   })
 
   context('when there is no matching delivery_job_id that matches search param', () => {
