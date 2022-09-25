@@ -14,6 +14,7 @@
     "plugin:react-hooks/recommended"
   ],
   "rules": {
+    "@typescript-eslint/no-namespace": "off",
     "id-length": ["warn", {"min": 3, "exceptions": ["id"]}],
     // React Rules
     "react/react-in-jsx-scope": "off",

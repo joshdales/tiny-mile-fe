@@ -19,6 +19,7 @@ const Address: React.FC<iProps> = ({ address }) => {
       ) : null}
       <span className={styles.addressLine}>{address.addressDescription.locality},</span>
       <span className={styles.addressLine}>{address.addressDescription.state},</span>
+      <span className={styles.addressLine}>{address.addressDescription.postalCode},</span>
       <span className={styles.addressLine}>{address.addressDescription.country}</span>
     </address>
   )

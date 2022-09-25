@@ -9,6 +9,7 @@
       "ESNext",
       "DOM"
     ],
+    "types": ["cypress", "node", "react"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
@@ -21,6 +22,6 @@
     "strict": true,
     "useDefineForClassFields": true,
   },
-  "include": ["src/**/*", "vite.config.ts"],
+  "include": ["src/**/*", "cypress/**/* ", "vite.config.ts", "cypress.config.ts"],
   "exclude": ["node_modules"]
 }
