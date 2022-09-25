@@ -2,6 +2,8 @@ import { DeliveryJob } from '@tiny-mile/delivery-sdk'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Address from './Address'
 
+import TableRow from './TableRow'
+
 import styles from './JobDetails.module.css'
 
 interface iGivenProps {
@@ -78,17 +80,3 @@ const JobDetails: React.FC<iProps> = ({ deliveryJob }) => {
 }
 
 export default JobDetails
-
-interface TableRowProps {
-  title: string
-  children: React.ReactNode
-}
-
-const TableRow: React.FC<TableRowProps> = ({ title, children }) => {
-  return (
-    <tr className={styles.row}>
-      <th className={styles.headerCell}>{title}</th>
-      <td className={styles.cell}>{children}</td>
-    </tr>
-  )
-}
