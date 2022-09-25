@@ -1,5 +1,5 @@
-import { formatMockedResponseUuid } from '../../../src/util'
-import deliveryJob from '../../fixtures/deliveryJob.json'
+import { formatMockedResponseUuid } from '../../src/util'
+import deliveryJob from '../fixtures/deliveryJob.json'
 
 describe('Delivery Job', () => {
   const deliveryJobId = formatMockedResponseUuid(deliveryJob.uuid)
