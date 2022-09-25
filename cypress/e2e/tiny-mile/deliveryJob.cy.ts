@@ -11,7 +11,7 @@ describe('Delivery Job', () => {
     cy.get('h2').should('contain', 'Assignment 🧐')
   })
 
-  context('when there is no matching delivery_job_id', () => {
+  context('when there is no matching delivery_job_id that matches search param', () => {
     beforeEach(() => {
       cy.visit('http://localhost:3000?delivery_job_id=not-valid')
     })
@@ -22,7 +22,7 @@ describe('Delivery Job', () => {
     })
   })
 
-  context('when there is no delivery_job_id', () => {
+  context('when there is no delivery_job_id search param', () => {
     beforeEach(() => {
       cy.visit('http://localhost:3000')
     })
