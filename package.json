@@ -4,7 +4,8 @@
   "description": "Tiny Mile front-end coding challenge",
   "main": "index.html",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "test": "cypress open"
   },
   "author": "joshdales",
   "license": "UNLICENSED",
