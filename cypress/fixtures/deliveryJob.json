@@ -1,0 +1,46 @@
+{
+  "uuid": "urn:uuid:36599ca3-03e3-2a86-e3b3-37ad440edcc9",
+  "stage": "courier-assignment",
+  "deliveryOrderUUID": "urn:uuid:a1509ccc-fc9c-210d-11fb-bdc56c5b80ff",
+  "pickUpAddress": {
+    "geocodedAddress": {
+      "lat": 96291884.60502452,
+      "lng": -851106.345371291,
+      "googlePlaceID": "dolore amet"
+    },
+    "addressDescription": {
+      "addressLine1": "do dolor",
+      "locality": "occaecat ullamco",
+      "state": "irure fugiat nostrud id pariatur",
+      "country": "quis exercitation irure ea",
+      "postalCode": "cillum reprehenderit culpa",
+      "addressLine2": "in",
+      "establishmentName": "consectetur adipisicing do in"
+    }
+  },
+  "pickUpEstimatedAt": "1956-08-22T15:33:34.970Z",
+  "dropOffAddress": {
+    "geocodedAddress": {
+      "lat": -85041665.96254286,
+      "lng": -60197463.385640316,
+      "googlePlaceID": "ea velit eiusmod"
+    },
+    "addressDescription": {
+      "addressLine1": "in Ut esse enim Duis",
+      "locality": "in",
+      "state": "eu id enim esse Excepteur",
+      "country": "ex do nulla Ut aliquip",
+      "postalCode": "laborum fugiat aliquip voluptate in",
+      "addressLine2": "ut quis sed eiusmod",
+      "establishmentName": "ut incididunt esse ea eu"
+    }
+  },
+  "dropOffEstimatedAt": "2013-06-07T02:40:57.017Z",
+  "deliveryCharges": {
+    "totalInCents": 35627697
+  },
+  "packageHolder": "unknown",
+  "currentCourierUUID": "urn:uuid:e8dffc5d-9fc4-f10a-8b20-899a778a87c1",
+  "nextCourierUUID": "b6185d8d-4eca-d5d5-e8f7-3125c27ac627",
+  "completedAt": "1986-05-08T21:25:48.146Z"
+}
