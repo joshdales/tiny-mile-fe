@@ -25,3 +25,4 @@ cypress client and you can select the type of testing that you want to view
 ### E2E Tests
 
 If you want run the e2e tests make sure that the dev server is running as well.
+You can also run just the E2E tests through the cli with `npm run test-e2e`.

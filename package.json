@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "test": "cypress open"
+    "test": "cypress open",
+    "test-e2e": "cypress run"
   },
   "author": "joshdales",
   "license": "UNLICENSED",
