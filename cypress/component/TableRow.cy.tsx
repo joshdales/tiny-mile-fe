@@ -1,5 +1,4 @@
 import React from 'react'
-import * as cy from 'cypress/react18'
 import TableRow from '../../src/components/TableRow'
 
 describe('TableRow.cy.ts', () => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import * as cy from 'cypress/react18'
 import ErrorMessage from '../../src/components/ErrorMessage'
 
 describe('ErrorMessage.cy.ts', () => {
@@ -10,10 +9,15 @@ describe('ErrorMessage.cy.ts', () => {
       .should('have.text', errorMessage)
   })
 
-  const children = <strong>Something has gone very wrong</strong>
-  it('displays the error message', () => {
-    cy.mount(<ErrorMessage errorMessage={errorMessage}>{children}</ErrorMessage>)
-      .get('strong')
+  it('displays the extra message', () => {
+    cy.mount(
+      <ErrorMessage errorMessage={errorMessage}>
+        <strong>Something has gone very wrong</strong>
+      </ErrorMessage>
+    )
+      .get('p.ErrorMessage-module__message')
+      .first()
+      .children()
       .should('have.text', 'Something has gone very wrong')
   })
 })
