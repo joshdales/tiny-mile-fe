@@ -13,9 +13,33 @@ describe('Delivery Job', () => {
   })
 
   it('displays the delivery job once fetched', () => {
-    cy.get('h2').should('contain', 'Assignment 🧐')
-    cy.get('h1').should('have.text', 'Job details')
-    cy.get('td').first().should('contain', deliveryJobId.split('-')[0])
+    cy.get('h2')
+      .should('contain', 'Assignment 🧐')
+      .get('h1')
+      .should('have.text', 'Job details')
+      .get('td')
+      .first()
+      .should('contain', deliveryJobId.split('-')[0])
+  })
+
+  it('opens the robots lid', () => {
+    cy.get('#open-robot-lid')
+      .click()
+      .get('code')
+      .contains('Contacting Robot... 🤖')
+      .get('.CourierControls-module__success')
+      .contains('✅ Ready for pick up!')
+  })
+
+  it('packs the robot', () => {
+    cy.get('#open-robot-lid')
+      .click()
+      .get('#order-drop-odd')
+      .click()
+      .get('code')
+      .contains('Contacting Robot... 🤖')
+      .get('.ErrorMessage-module__message')
+      .contains('Event was rejected')
   })
 
   context('when there is no matching delivery_job_id that matches search param', () => {
